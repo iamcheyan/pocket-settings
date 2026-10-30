@@ -919,12 +919,48 @@ func (s *server) storageDevices(w http.ResponseWriter, _ *http.Request) {
 	jsonResponse(w, 200, map[string]any{"available": false, "devices": []any{}, "source": "mock", "mock": true, "reason": "Storage discovery is unavailable without a system provider"})
 }
 
+// accountProviders lists the identity providers Pocket Settings is designed to
+// surface. None is deployed today, so every entry is explicitly unavailable
+// rather than omitted.
+var accountProviders = []struct{ ID, Name string }{
+	{"google", "Google"},
+	{"github", "GitHub"},
+	{"microsoft", "Microsoft"},
+	{"mozilla", "Mozilla"},
+}
+
+// syncProviderKinds lists the sync backends the Sync page is designed for.
+var syncProviderKinds = []struct{ ID, Name string }{
+	{"webdav", "WebDAV"},
+	{"nextcloud", "Nextcloud"},
+	{"syncthing", "Syncthing"},
+	{"git", "Git"},
+}
+
 func (s *server) accounts(w http.ResponseWriter, _ *http.Request) {
-	jsonResponse(w, 200, map[string]any{"available": false, "accounts": []any{}, "source": "mock", "mock": true, "reason": "Account providers are unavailable"})
+	reason := "No authd client is deployed"
+	accounts := make([]map[string]any, 0, len(accountProviders))
+	for _, provider := range accountProviders {
+		accounts = append(accounts, map[string]any{
+			"id": provider.ID, "provider": provider.ID, "name": provider.Name,
+			"available": false, "signedIn": false, "source": "mock",
+			"reason": reason,
+		})
+	}
+	jsonResponse(w, 200, map[string]any{"available": false, "accounts": accounts, "source": "mock", "mock": true, "reason": reason})
 }
 
 func (s *server) syncProviders(w http.ResponseWriter, _ *http.Request) {
-	jsonResponse(w, 200, map[string]any{"available": false, "providers": []any{}, "source": "mock", "mock": true, "reason": "Sync providers are unavailable"})
+	reason := "No syncd client is deployed"
+	providers := make([]map[string]any, 0, len(syncProviderKinds))
+	for _, provider := range syncProviderKinds {
+		providers = append(providers, map[string]any{
+			"id": provider.ID, "name": provider.Name, "kind": provider.ID,
+			"available": false, "configured": false, "status": "unavailable",
+			"source": "mock", "reason": reason,
+		})
+	}
+	jsonResponse(w, 200, map[string]any{"available": false, "providers": providers, "source": "mock", "mock": true, "reason": reason})
 }
 
 func (s *server) updates(w http.ResponseWriter, _ *http.Request) {

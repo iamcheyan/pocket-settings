@@ -512,6 +512,31 @@ func TestCapabilityRouteAndDisabledSettingsWrite(t *testing.T) {
 	}
 }
 
+func TestAccountAndSyncProvidersAreListedUnavailable(t *testing.T) {
+	s := testServer(t)
+	accounts := request(t, s, http.MethodGet, "/api/accounts", "")
+	if accounts.Code != http.StatusOK {
+		t.Fatalf("accounts status=%d", accounts.Code)
+	}
+	for _, want := range []string{"Google", "GitHub", "Microsoft", "Mozilla"} {
+		if !bytes.Contains(accounts.Body.Bytes(), []byte(`"`+want+`"`)) {
+			t.Errorf("account provider %s missing: %s", want, accounts.Body)
+		}
+	}
+	if bytes.Contains(accounts.Body.Bytes(), []byte(`"available":true`)) {
+		t.Errorf("account providers must not claim availability: %s", accounts.Body)
+	}
+	sync := request(t, s, http.MethodGet, "/api/sync/providers", "")
+	if sync.Code != http.StatusOK {
+		t.Fatalf("sync providers status=%d", sync.Code)
+	}
+	for _, want := range []string{"WebDAV", "Nextcloud", "Syncthing", "Git"} {
+		if !bytes.Contains(sync.Body.Bytes(), []byte(`"`+want+`"`)) {
+			t.Errorf("sync provider %s missing: %s", want, sync.Body)
+		}
+	}
+}
+
 func TestProviderDomainsFollowServiceStatus(t *testing.T) {
 	s := testServer(t)
 	// Accounts/sync/updates are provider domains: unavailable while their mock

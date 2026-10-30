@@ -10,22 +10,22 @@
     "name": "display-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "023891e3a354fa55538057d618ab4e4365970cafebda58cfe8018da107f86bbd",
-    "bytes": 59138
+    "sha256": "0575aa5f971f4dec70e7b85ac17e7b0f4758619d14e694d26526cdbe2e300c36",
+    "bytes": 59127
   },
   {
     "name": "audio-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "1d06341f27256f289967a9d79205d4f354c50fb1fbf472883fb7994465a5655c",
-    "bytes": 43809
+    "sha256": "928582954d6b9077fb7388f42a06d9178f6f676094ccbb002eaca1ec941d1748",
+    "bytes": 43811
   },
   {
     "name": "network-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "89f7b7e790a1c94ccca90d42d2a241242ebd36e70058d83f9a6184ab91235547",
-    "bytes": 66404
+    "sha256": "d875071571856f9dea9a188e2a6648d79f2dbe66b44d90b3c037d80aa8471480",
+    "bytes": 66296
   },
   {
     "name": "wifi-Desktop-dark-en",
@@ -38,8 +38,8 @@
     "name": "bluetooth-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "0d554019d883fcfb513e6abff7db46e9005aaac9dcd547f89a03aab96243e007",
-    "bytes": 64523
+    "sha256": "53b242525cc64c6593ebeff42fb5c4ceb503f208256e7ee11ed3df6f2328c112",
+    "bytes": 64542
   },
   {
     "name": "remote-Desktop-dark-en",
@@ -52,8 +52,8 @@
     "name": "storage-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "526835c6640f320f0f445fb79d7f288bbf11fadd13290db78825787d5ed49b11",
-    "bytes": 63573
+    "sha256": "b07c22cb7c3460872a066bb4cdf936f3c6696fed5a36d99100d7c4808a956e8c",
+    "bytes": 63595
   },
   {
     "name": "accounts-Desktop-dark-en",
@@ -136,22 +136,22 @@
     "name": "display-light-en-Desktop",
     "width": 1280,
     "height": 720,
-    "sha256": "f646bec7f9c507d715d44e04f9c6b908bdd6c4243ad32abc30ee0114d3ddada3",
-    "bytes": 58995
+    "sha256": "6ff4e377334ae04d2dc90b8e69a372fc5abe5cb7b21bbbdc1535fa7000bc3d72",
+    "bytes": 58960
   },
   {
     "name": "display-oled-ja-Desktop",
     "width": 1280,
     "height": 720,
-    "sha256": "c0d99a4fea0c867aead9c522e57966001fba90883abfcea3111f1e741f3b0b74",
-    "bytes": 60070
+    "sha256": "67f8e5fa3d5feac42b87c22c4c9ad233f59c4f6f734deb2af338367f2f2ae9c8",
+    "bytes": 60075
   },
   {
     "name": "display-Leaf3C-eink",
     "width": 1280,
     "height": 720,
-    "sha256": "65a94a01b0500c1bf75878cd7627a628922ecde41691921ca416674266d4ca99",
-    "bytes": 54247
+    "sha256": "92c4363a16c6684d2fac4f9d09b901bd1bcfc38e34879864323218ca5b67c517",
+    "bytes": 54216
   },
   {
     "name": "wifi-Leaf3C-dark-en",
