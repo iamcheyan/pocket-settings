@@ -77,8 +77,10 @@ otherwise the backend returns `403 capability_unavailable`.
   (`503 provider_unavailable`, `performed:false`).
 - Audit details are recursively redacted (`password`, tokens, secrets,
   `*_key`, etc.).
-- Credentials must live in a future encrypted CredentialStore; never in
-  settings JSON, SQLite plaintext, or logs.
+- Credentials have no storage: settings and override writes reject
+  credential-shaped keys (`400 credential_not_allowed`, nested paths included)
+  before anything reaches SQLite. A future encrypted CredentialStore is needed
+  before credential storage exists.
 - Mock state is labelled in the UI and auditable. A stored preference is not
   proof any hardware accepted it.
 - HX90 is a development host, never a target for real system-setting writes.

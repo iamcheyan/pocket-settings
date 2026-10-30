@@ -15,7 +15,7 @@ Flags (default off; no write path exists even when enabled):
 | `--allow-system-control` | Gated privileged actions report `501 system_control_not_implemented` instead of `503`; nothing is executed |
 
 Errors use `{"error":{"code":"...","message":"..."}}` with an HTTP status.
-`404 unknown_domain`, `400 invalid_json`/`invalid_profile`/`invalid_settings`,
+`404 unknown_domain`, `400 invalid_json`/`invalid_profile`/`invalid_settings`/`credential_not_allowed`,
 `403 capability_unavailable`, `409 confirmation_required`,
 `503 provider_unavailable`, `501 system_control_not_implemented`.
 
@@ -102,5 +102,9 @@ Audit details pass through recursive redaction: `password`,
 `passwd`, `token`, `access_token`, `refresh_token`, `secret`, `api_key`,
 `apikey`, `credential`, `authorization`, and any key containing `password`,
 `passwd`, or ending in `_token`, `_secret`, `_key` become `[REDACTED]`.
-Credentials must never be placed in settings JSON; an encrypted
-CredentialStore is future work.
+**Credential-shaped settings keys are refused**, not merely redacted: any key
+matching `password`, `passwd`, `token`, `access_token`,
+`refresh_token`, `secret`, `api_key`, `apikey`, `credential`, `authorization`, or
+ending in `_token` / `_secret` / `_key` — at any nesting depth — returns
+`400 credential_not_allowed` with the offending path, and nothing is persisted.
+An encrypted CredentialStore is required before credential storage can exist.

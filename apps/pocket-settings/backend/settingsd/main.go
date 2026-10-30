@@ -621,6 +621,10 @@ func (s *server) putSettings(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+	if path := findCredentialKey(value, ""); path != "" {
+		fail(w, 400, "credential_not_allowed", "credentials must not be stored in settings; an encrypted CredentialStore is required ("+path+")")
+		return
+	}
 	b, err := json.Marshal(value)
 	if err != nil || len(b) > 65536 {
 		fail(w, 400, "invalid_settings", "settings payload exceeds domain limit")
@@ -724,6 +728,10 @@ func (s *server) overridePut(w http.ResponseWriter, r *http.Request) {
 			fail(w, 400, "invalid_override", "override key or value exceeds limits")
 			return
 		}
+	}
+	if path := findCredentialKey(value, ""); path != "" {
+		fail(w, 400, "credential_not_allowed", "credentials must not be stored in settings; an encrypted CredentialStore is required ("+path+")")
+		return
 	}
 	b, err := json.Marshal(value)
 	if err != nil || len(b) > 65536 {
@@ -1205,6 +1213,43 @@ func (s *server) audit(w http.ResponseWriter, _ *http.Request) {
 		"sanitized": true, "mockOnly": true,
 	}
 	jsonResponse(w, 200, map[string]any{"entries": entries, "summary": summary, "dangerousActions": dangerousActionPaths()})
+}
+
+// credentialKey reports whether a settings key names a credential. Settings
+// JSON is stored in plaintext SQLite, so such keys must be refused outright
+// rather than merely redacted in the audit trail.
+func credentialKey(key string) bool {
+	normalized := strings.ToLower(strings.ReplaceAll(strings.ReplaceAll(key, "-", "_"), " ", "_"))
+	return sensitive[normalized] || strings.Contains(normalized, "password") || strings.Contains(normalized, "passwd") ||
+		strings.HasSuffix(normalized, "_token") || strings.HasSuffix(normalized, "_secret") || strings.HasSuffix(normalized, "_key") ||
+		strings.Contains(normalized, "credential")
+}
+
+// findCredentialKey walks a settings value and returns the first credential-like
+// key path, or "" when the payload contains no credentials.
+func findCredentialKey(value any, path string) string {
+	switch v := value.(type) {
+	case map[string]any:
+		for key, item := range v {
+			child := key
+			if path != "" {
+				child = path + "." + key
+			}
+			if credentialKey(key) {
+				return child
+			}
+			if found := findCredentialKey(item, child); found != "" {
+				return found
+			}
+		}
+	case []any:
+		for i, item := range v {
+			if found := findCredentialKey(item, fmt.Sprintf("%s[%d]", path, i)); found != "" {
+				return found
+			}
+		}
+	}
+	return ""
 }
 
 func redact(value any) any {

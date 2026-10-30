@@ -159,27 +159,43 @@ func TestPreferencesRouteAlsoControlsUIProfile(t *testing.T) {
 	}
 }
 
-func TestAuditRedactsNestedSecrets(t *testing.T) {
+func TestCredentialKeysAreRefusedAndAuditRedacts(t *testing.T) {
 	s := testServer(t)
 	if w := request(t, s, http.MethodPut, "/api/capabilities/profile", `{"hardwareProfile":"Desktop"}`); w.Code != 200 {
 		t.Fatalf("select mock profile status=%d", w.Code)
 	}
-	if w := request(t, s, http.MethodPut, "/api/settings/network", `{"ssid":"Home","wifi_password":"secret","nested":{"access_token":"abc","safe":"yes"}}`); w.Code != 200 {
-		t.Fatalf("write network settings status=%d body=%s", w.Code, w.Body)
+	// Credential-like keys must be refused before persistence, at any depth.
+	for _, payload := range []string{
+		`{"ssid":"Home","wifi_password":"secretvalue"}`,
+		`{"nested":{"access_token":"abcvalue"}}`,
+		`{"client_secret":"xyzvalue"}`,
+	} {
+		w := request(t, s, http.MethodPut, "/api/settings/network", payload)
+		if w.Code != http.StatusBadRequest {
+			t.Fatalf("credential payload %s status=%d body=%s", payload, w.Code, w.Body)
+		}
+		if code := errorCode(t, w); code != "credential_not_allowed" {
+			t.Fatalf("credential payload %s code=%s", payload, code)
+		}
 	}
-	w := request(t, s, http.MethodGet, "/api/audit", "")
-	var body map[string]any
-	if err := json.Unmarshal(w.Body.Bytes(), &body); err != nil {
-		t.Fatal(err)
+	stored := request(t, s, http.MethodGet, "/api/settings/network", "")
+	for _, secret := range []string{"secretvalue", "abcvalue", "xyzvalue"} {
+		if bytes.Contains(stored.Body.Bytes(), []byte(secret)) {
+			t.Fatalf("credential material persisted: %s", stored.Body)
+		}
 	}
-	entries := body["entries"].([]any)
-	details := entries[0].(map[string]any)["details"].(map[string]any)
-	if details["wifi_password"] != "[REDACTED]" {
-		t.Fatalf("password not redacted: %v", details)
+	// Provider actions remain mock-acknowledged, and their audit details are
+	// redacted rather than storing credential values.
+	w := request(t, s, http.MethodPost, "/api/network/wifi/connect", `{"ssid":"Home","nested":{"access_token":"abcvalue","safe":"yes"}}`)
+	if w.Code != http.StatusOK {
+		t.Fatalf("mock wifi connect status=%d body=%s", w.Code, w.Body)
 	}
-	nested := details["nested"].(map[string]any)
-	if nested["access_token"] != "[REDACTED]" || nested["safe"] != "yes" {
-		t.Fatalf("nested audit details=%v", nested)
+	audit := request(t, s, http.MethodGet, "/api/audit", "")
+	if bytes.Contains(audit.Body.Bytes(), []byte("abcvalue")) {
+		t.Fatalf("audit leaked credential value: %s", audit.Body)
+	}
+	if !bytes.Contains(audit.Body.Bytes(), []byte("[REDACTED]")) || !bytes.Contains(audit.Body.Bytes(), []byte("sanitized")) {
+		t.Fatalf("audit missing redaction/sanitized summary: %s", audit.Body)
 	}
 }
 
