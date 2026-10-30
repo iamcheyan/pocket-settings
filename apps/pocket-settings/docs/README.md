@@ -8,6 +8,7 @@ Pocket Settings is a PocketJS interface backed by the Go `settingsd` service. Ha
 - [Database](DATABASE.md): SQLite schema and persistence boundaries.
 - [API](API.md): current HTTP endpoints and semantics.
 - [Roadmap](ROADMAP.md): implementation baseline and future provider migration.
-- [Screenshot manifest](SCREENSHOTS.md): generated Chromium captures and their metadata, when available.
+- [Screenshot manifest](SCREENSHOTS.md): generated Chromium captures, dimensions and hashes.
+- [Acceptance record](ACCEPTANCE.md): commands, API/UI checks, and what was deliberately not performed.
 
 For repository setup and development commands, see the [project README](../../../README.md).

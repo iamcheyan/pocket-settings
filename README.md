@@ -107,3 +107,4 @@ The migration matrix and non-regression policy are in
 - [API](apps/pocket-settings/docs/API.md)
 - [Roadmap](apps/pocket-settings/docs/ROADMAP.md)
 - [Screenshot manifest](apps/pocket-settings/docs/SCREENSHOTS.md)
+- [Acceptance record](apps/pocket-settings/docs/ACCEPTANCE.md)
