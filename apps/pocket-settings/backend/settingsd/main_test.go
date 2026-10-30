@@ -737,6 +737,36 @@ func TestSearchCoversPagesSettingsAndCapabilities(t *testing.T) {
 	}
 }
 
+func TestSearchCoversSpecifiedSettingKeys(t *testing.T) {
+	s := testServer(t)
+	if w := request(t, s, http.MethodPut, "/api/capabilities/profile", `{"hardwareProfile":"Desktop"}`); w.Code != 200 {
+		t.Fatalf("hardware profile status=%d", w.Code)
+	}
+	for _, key := range []string{"brightness", "dpi", "nightMode", "volume", "hostname", "dns", "proxy", "sshPort", "adbEnabled", "sleepTimeout", "developerMode"} {
+		results := decodeBody(t, request(t, s, http.MethodGet, "/api/search?q="+key, ""))["results"].([]any)
+		found := false
+		for _, result := range results {
+			row := result.(map[string]any)
+			if row["type"] == "setting" && row["key"] == key {
+				found = true
+			}
+		}
+		if !found {
+			t.Errorf("search misses setting key %s: %v", key, results)
+		}
+	}
+	// E-Ink-only keys must stay hidden without the EInk capability.
+	for _, key := range []string{"refreshRate", "a2Mode", "contrast"} {
+		results := decodeBody(t, request(t, s, http.MethodGet, "/api/search?q="+key, ""))["results"].([]any)
+		for _, result := range results {
+			row := result.(map[string]any)
+			if row["type"] == "setting" && row["key"] == key {
+				t.Errorf("Desktop search leaked e-ink key %s", key)
+			}
+		}
+	}
+}
+
 func TestAuditSummaryAndSanitization(t *testing.T) {
 	s := testServer(t)
 	if w := request(t, s, http.MethodPut, "/api/capabilities/profile", `{"hardwareProfile":"Desktop"}`); w.Code != 200 {

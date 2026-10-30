@@ -15,34 +15,34 @@ presentation metadata — no physical capability or service state is implied.
 
 | File | Dimensions | SHA-256 |
 |---|---|---|
-| `accounts-Desktop-dark-en.png` | 1280x720 | `8aa60719b815637bc8880ce7c632a4d918c6cd1095a455ccb5fdf2b09135bdf2` |
-| `audio-Desktop-dark-en.png` | 1280x720 | `1d06341f27256f289967a9d79205d4f354c50fb1fbf472883fb7994465a5655c` |
-| `bluetooth-Desktop-dark-en.png` | 1280x720 | `0bbbd31a900eb5dbefa7253ed783f96f1e9f2356e40a8d08995a0e6f0d4e3245` |
-| `developer-Desktop-dark-en.png` | 1280x720 | `a838f10be01b678e424d085ab4c4cdf46484eca1c07b80956d5b4516b26722a3` |
-| `display-Desktop-dark-en.png` | 1280x720 | `59c46e2aa72c571bf599622bdcddf5764aec583e5db112a086db374d29e4fc22` |
-| `display-Leaf3C-eink.png` | 1280x720 | `75ecc22025c17f212ceafa5f1813a8638c49c06fd61696c3911b4fe3603e8bd0` |
-| `display-light-en-Desktop.png` | 1280x720 | `524c5121a448a88d27420aa2e07a3fd2bc1a39b9513d3a3a8100bccc6d64da19` |
-| `display-oled-ja-Desktop.png` | 1280x720 | `43b28a7a4c30aabbaa67056b1c76e155f4e614022e85d8c25ac840f337df34f1` |
-| `home-1920x1080.png` | 1920x1080 | `4159214157bfe48f4087bb77e88e5272bd7962a60791d4676f22cb3ac30af201` |
+| `accounts-Desktop-dark-en.png` | 1280x720 | `bb30a0f9ca427efe0a9af7fbe715e45607aa40f7472b8216c03b7acea03cf4fc` |
+| `audio-Desktop-dark-en.png` | 1280x720 | `fee7591e44867461bb563960b28ca110ab71bbc384a5af39086c4c985a7c0131` |
+| `bluetooth-Desktop-dark-en.png` | 1280x720 | `3a2147bd474bd5170984ee9545c2c37511175a3e0038ef1b3479e80957654aab` |
+| `developer-Desktop-dark-en.png` | 1280x720 | `b16eb551f09fcd3c41be903ab164fc0316763bf978143b359b3e9a03846d9ad8` |
+| `display-Desktop-dark-en.png` | 1280x720 | `5356d99d1128e3420fdc66034d1368d0bb18c735395d927d43f002ea30e642c0` |
+| `display-Leaf3C-eink.png` | 1280x720 | `fb4bb42c4b64810af954dffafdf3d7650d5e77d2a55b435fbbbb4b6172ff4a2a` |
+| `display-light-en-Desktop.png` | 1280x720 | `cb008c2e94f1545fc2bd9e590fdae671df98d90853af8b32d50fbedf397eb78b` |
+| `display-oled-ja-Desktop.png` | 1280x720 | `37948f87874fe7b6935e6d64a3e77a0fe211db23f726b4d495100ee099077a85` |
+| `home-1920x1080.png` | 1920x1080 | `9874aa14799ba7b24db8e53a3eab19bdf535870710f2286333e13046a0de4d77` |
 | `home-320x240.png` | 320x240 | `ab6a9b0932ef62d35b36bd08a2ed250368735494232494d4596e60bb23b78ef5` |
 | `home-480x320.png` | 480x320 | `2a218f278b2e77bfba31db48f990781a2639f34b066803c43599755e2cee0ada` |
 | `home-640x480.png` | 640x480 | `6282cfae762c4860826e1f20bf803345a787634f85c48bc86fcd713eeefd6f3f` |
-| `home-720x720.png` | 720x720 | `a6e93df5039c065e57b29567d8cee4c836dd9b2638de8a3170b54f8747e3c5d9` |
-| `home-Desktop-dark-en.png` | 1280x720 | `ae9e199047a73446130365d0a20837f5856c1cfcafbc617708f1d11bef6b2404` |
+| `home-720x720.png` | 720x720 | `fdc26d291eb2f9bc2650ed9ee28cfac77dee8e713cb167ae27c3d76f3db1c4e0` |
+| `home-Desktop-dark-en.png` | 1280x720 | `2f54b83f3dcb7872aa831f7ca9f1f1676fab6edbe5192c5192d561bef5c652a6` |
 | `home-handheld-RG34XX.png` | 1280x720 | `515eb44300bd7836348ab89d7d31d50b04b25a0122e8c3f38e7fc186544fa7c5` |
-| `home-light-en-Desktop.png` | 1280x720 | `5515dd03098dff1352d8bfd55f0cc3395f40c795fbb517db0423840b2c8fba90` |
-| `home-light-zh-CN-Desktop.png` | 1280x720 | `24db42ba90603782bc57d2b98e43cd9bccd22dc91786139dcf7e36f46db5d467` |
-| `home-oled-ja-Desktop.png` | 1280x720 | `9237ef98ca095ff75dc6b73ed09eae214eb690773359aa4206d21b258058e5c5` |
-| `network-Desktop-dark-en.png` | 1280x720 | `89f7b7e790a1c94ccca90d42d2a241242ebd36e70058d83f9a6184ab91235547` |
-| `power-Desktop-dark-en.png` | 1280x720 | `c1bad73454552c34e17c4c4f1bc24ef822163cea19ae8b00e1d4fa2d8fa3be52` |
-| `remote-Desktop-dark-en.png` | 1280x720 | `cda0ccdb8b2c0500446e802fdcae18b9faf12e88a5125aec202bd502d831ece5` |
-| `services-Desktop-dark-en.png` | 1280x720 | `2b1078e04ef0a6b43cd279d4670d8ab394219f7e9670669a7c02f9a842d7b588` |
-| `storage-Desktop-dark-en.png` | 1280x720 | `526835c6640f320f0f445fb79d7f288bbf11fadd13290db78825787d5ed49b11` |
-| `sync-Desktop-dark-en.png` | 1280x720 | `ecfdae1ff7d0e9df00b122d6bf935d9f105769ff29ea9b23e094a73974dd982e` |
-| `system-Desktop-dark-en.png` | 1280x720 | `6ce78e7185de194873e7b73b830d83ef99fa65363fd75ca8425da7805d31521c` |
-| `updates-Desktop-dark-en.png` | 1280x720 | `4af6aae7d91487b9a121bd32209cc3bfb1fdd05d2186000373a9d999b0a2b702` |
-| `wifi-Desktop-dark-en.png` | 1280x720 | `a140d32fe2535760f4a9dca5c8fe63f97139d1afc91196bb109a615f728c2aa1` |
-| `wifi-Leaf3C-dark-en.png` | 1280x720 | `abc1fb4061be2459dfa84f9d829b4c8a1a6339c59f9f690844da0daa8d4675ee` |
+| `home-light-en-Desktop.png` | 1280x720 | `e2ba55cde6cfd49ed9037d9423391a726af988dd0ba018a9ffc3a1b89b6dbd66` |
+| `home-light-zh-CN-Desktop.png` | 1280x720 | `72e55ef3374ea296f50c3dea85daf73e2453b91e97d09ff9d8fe93c81726a081` |
+| `home-oled-ja-Desktop.png` | 1280x720 | `1d6d913f03b8aed45c11be315838af3f405ad5f1e181ec25fb0345cee4bc1f0e` |
+| `network-Desktop-dark-en.png` | 1280x720 | `4b4af7edaf9d5de3b6c38d9af7350ac9a2d58b5065e0fe05ae497db04308fa07` |
+| `power-Desktop-dark-en.png` | 1280x720 | `13ceec750630d9dfb4727df67bbf39ef1aea2fe94c045406759128ec82056006` |
+| `remote-Desktop-dark-en.png` | 1280x720 | `911b7fd41b29e3fe1e95b3f27f4f5d09894484bf978a39c2bbf5d13571349012` |
+| `services-Desktop-dark-en.png` | 1280x720 | `3336b6820dc8832fcd543a470b0d5a1699cb4548549ff8462692a43efd3f2395` |
+| `storage-Desktop-dark-en.png` | 1280x720 | `64de83d244384965d42172ae795c280ad80dff51aef9e174e86f0af201a78f59` |
+| `sync-Desktop-dark-en.png` | 1280x720 | `97bbd99135a212329b9d5236bb7330e5d77bf4e6aae9e84e11bbde9ebb867b01` |
+| `system-Desktop-dark-en.png` | 1280x720 | `b3132f6d96f6422bcd7a8c59e9d5239fb3c84d73226caf8048b4685c00b33f9a` |
+| `updates-Desktop-dark-en.png` | 1280x720 | `93c14b47d0fc767e680ba813e3dacb6ee6273f3a5aa15a12d551d2143b5ee40a` |
+| `wifi-Desktop-dark-en.png` | 1280x720 | `54c80b77e3b7bf556d3bc9134e6d05ba5bee10ca4172773c93613067c85d22c7` |
+| `wifi-Leaf3C-dark-en.png` | 1280x720 | `ba12606b258eda4b025bb8a29c99fa2f6da2a9491b49b8deb046787f40c94ca8` |
 
 
 ## Coverage

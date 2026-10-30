@@ -36,6 +36,9 @@ var providerDomains = map[string]string{"accounts": "authd", "sync": "syncd", "u
 
 var domainLabels = map[string]string{"display": "Display", "audio": "Audio", "network": "Network", "storage": "Storage", "remote": "Remote Play", "accounts": "Accounts", "sync": "Sync", "updates": "Updates", "power": "Power", "developer": "Developer", "system": "System"}
 
+// einkOnlyKeys are display settings that only exist on E-Ink panels.
+var einkOnlyKeys = map[string]bool{"refreshRate": true, "fullRefreshFrequency": true, "a2Mode": true, "grayscale": true, "contrast": true}
+
 var sensitive = map[string]bool{"password": true, "passwd": true, "token": true, "access_token": true, "refresh_token": true, "secret": true, "api_key": true, "apikey": true, "credential": true, "authorization": true}
 
 type Capability struct {
@@ -207,7 +210,23 @@ func seed(ctx context.Context, db *sql.DB) error {
 			return err
 		}
 	}
-	defaults := map[string]map[string]any{"display": {"brightness": 50, "rotation": 0, "autoRotate": false, "theme": "system"}, "audio": {"volume": 50, "muted": false, "output": "default"}, "network": {"wifiEnabled": false, "ethernetEnabled": false}, "storage": {"autoMount": true}, "remote": {"sshEnabled": false}, "accounts": {"accounts": []any{}}, "sync": {"enabled": false, "provider": "none"}, "updates": {"automatic": false, "channel": "stable"}, "power": {"sleepTimeout": 300, "lowBatteryWarning": 20}, "developer": {"adbEnabled": false, "usbDebugging": false}, "system": {"locale": "en", "timezone": "UTC"}}
+	defaults := map[string]map[string]any{
+		"display": {
+			"brightness": 50, "scaling": 100, "dpi": 1, "rotation": 0, "resolution": "auto",
+			"colorTemperature": 6500, "nightMode": false, "autoBrightness": false, "timeout": 300,
+			"refreshRate": 60, "fullRefreshFrequency": 10, "a2Mode": false, "grayscale": false, "contrast": 50,
+		},
+		"audio":     {"volume": 50, "muted": false, "input": "microphone", "output": "speaker", "defaultDevice": "speaker", "audioTest": false},
+		"network":   {"wifiEnabled": false, "ethernetEnabled": false, "hostname": "pocket-settings", "dns": "", "proxy": ""},
+		"storage":   {"autoMount": false},
+		"remote":    {"sshEnabled": false, "sshPort": 22, "adbEnabled": false, "adbPort": 5555, "sftpEnabled": false, "remoteTerminal": false},
+		"accounts":  {"accounts": []any{}},
+		"sync":      {"enabled": false, "provider": "none", "url": "", "path": "", "interval": 900},
+		"updates":   {"automatic": false, "channel": "stable", "history": []any{}},
+		"power":     {"sleepTimeout": 300, "lowBatteryWarning": 20, "batteryLevel": 0, "batteryStatus": "unknown", "batteryHealth": "unknown", "charging": false, "shutdownTimer": 0},
+		"developer": {"developerMode": false, "adbEnabled": false, "usbDebugging": false, "debugLogs": false, "performanceOverlay": false},
+		"system":    {"locale": "en", "timezone": "UTC"},
+	}
 	for domain, value := range defaults {
 		b, _ := json.Marshal(value)
 		if _, err := db.ExecContext(ctx, `INSERT OR IGNORE INTO settings(domain,value,updated_at) VALUES(?,?,?)`, domain, string(b), now()); err != nil {
@@ -515,6 +534,13 @@ func (s *server) capabilityData() map[string]Capability {
 				}
 			}
 			out[domain] = Capability{Available: available, Enabled: available, Controllable: false, Source: "mock", Reason: reason}
+			continue
+		}
+		if domain == "developer" && s.currentHardwareProfile() != "unavailable" {
+			// Developer tooling (runtime info, service status, logs, audit, API
+			// inspector) does not depend on ADB/USB hardware. ADB-specific
+			// controls remain gated by their own capabilities on the page.
+			out[domain] = Capability{Available: true, Enabled: true, Controllable: false, Source: "mock", Reason: "Debug preferences are stored locally; runtime details are read-only"}
 			continue
 		}
 		available := false
@@ -1050,6 +1076,9 @@ func (s *server) search(w http.ResponseWriter, r *http.Request) {
 				continue
 			}
 			for key, rawValue := range value {
+				if einkOnlyKeys[key] && !caps["EInk"].Available {
+					continue
+				}
 				var parsed any
 				_ = json.Unmarshal(rawValue, &parsed)
 				if matchQuery(query, key) {
