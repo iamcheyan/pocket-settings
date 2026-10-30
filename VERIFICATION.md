@@ -1,8 +1,8 @@
 # Verification — pocket-settings @ 2026-10-31
 
 - Verdict: PASS
-- Commit: `__COMMIT__` (fixes + screenshots; this document is the following commit)
-- Remote: `__REMOTE__`
+- Commit: `1c79b83647d5d47537726377318b52108b115ea8` (fixes + screenshots; this document is the following commit)
+- Remote: `1c79b83647d5d47537726377318b52108b115ea8`
 - Runtime: `settingsd` on `127.0.0.1:8090` (fresh temp SQLite, mock capability providers) + Vite `127.0.0.1:15173`; `make build` production bundle
 - Toolchain: go 1.26.0, node v22.23.3, Chrome 155.0.8059.84
 
