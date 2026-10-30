@@ -537,6 +537,38 @@ func TestAccountAndSyncProvidersAreListedUnavailable(t *testing.T) {
 	}
 }
 
+func TestDeviceEndpointsFollowCapability(t *testing.T) {
+	s := testServer(t)
+	// No hardware profile: every device endpoint reports unavailable.
+	for _, path := range []string{"/api/network/wifi/scan", "/api/bluetooth/devices", "/api/storage/devices"} {
+		w := request(t, s, http.MethodGet, path, "")
+		if w.Code != http.StatusOK || !bytes.Contains(w.Body.Bytes(), []byte(`"available":false`)) {
+			t.Fatalf("%s without profile status=%d body=%s", path, w.Code, w.Body)
+		}
+	}
+	// Desktop claims WiFi/Bluetooth/Storage capabilities; endpoints must then be
+	// available but explicitly labelled mock.
+	if w := request(t, s, http.MethodPut, "/api/capabilities/profile", `{"hardwareProfile":"Desktop"}`); w.Code != http.StatusOK {
+		t.Fatalf("select Desktop status=%d", w.Code)
+	}
+	for _, path := range []string{"/api/network/wifi/scan", "/api/bluetooth/devices"} {
+		w := request(t, s, http.MethodGet, path, "")
+		if !bytes.Contains(w.Body.Bytes(), []byte(`"available":true`)) || !bytes.Contains(w.Body.Bytes(), []byte(`"mock":true`)) {
+			t.Fatalf("%s on Desktop body=%s", path, w.Body)
+		}
+	}
+	// M21 has Storage but not WiFi: divergence must be visible per endpoint.
+	if w := request(t, s, http.MethodPut, "/api/capabilities/profile", `{"hardwareProfile":"M21"}`); w.Code != http.StatusOK {
+		t.Fatalf("select M21 status=%d", w.Code)
+	}
+	if w := request(t, s, http.MethodGet, "/api/storage/devices", ""); !bytes.Contains(w.Body.Bytes(), []byte(`"available":true`)) {
+		t.Fatalf("storage on M21 body=%s", w.Body)
+	}
+	if w := request(t, s, http.MethodGet, "/api/network/wifi/scan", ""); !bytes.Contains(w.Body.Bytes(), []byte(`"available":false`)) {
+		t.Fatalf("wifi on M21 body=%s", w.Body)
+	}
+}
+
 func TestProviderDomainsFollowServiceStatus(t *testing.T) {
 	s := testServer(t)
 	// Accounts/sync/updates are provider domains: unavailable while their mock

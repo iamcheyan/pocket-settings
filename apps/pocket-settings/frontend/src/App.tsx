@@ -381,7 +381,7 @@ export function App() {
     if (page === 'developer') { void loadSettings('developer'); void loadServices(); void loadAudit(); void loadSystemInfo(); return; }
     if (page === 'system') { void loadSystemInfo(); void loadStorage(); void loadSettings('display'); void loadSettings('network'); return; }
     if (page === 'network' || page === 'display' || page === 'audio') void loadSettings(page);
-  }, [page, loadWifi, loadBluetooth, loadStorage, loadAccounts, loadSync, loadUpdates, loadServices, loadSettings, loadSystemInfo, loadAudit]);
+  }, [page, hardwareProfile, loadWifi, loadBluetooth, loadStorage, loadAccounts, loadSync, loadUpdates, loadServices, loadSettings, loadSystemInfo, loadAudit]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {

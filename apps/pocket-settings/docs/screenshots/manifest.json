@@ -10,36 +10,36 @@
     "name": "display-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "0575aa5f971f4dec70e7b85ac17e7b0f4758619d14e694d26526cdbe2e300c36",
-    "bytes": 59127
+    "sha256": "59c46e2aa72c571bf599622bdcddf5764aec583e5db112a086db374d29e4fc22",
+    "bytes": 58798
   },
   {
     "name": "audio-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "928582954d6b9077fb7388f42a06d9178f6f676094ccbb002eaca1ec941d1748",
-    "bytes": 43811
+    "sha256": "1d06341f27256f289967a9d79205d4f354c50fb1fbf472883fb7994465a5655c",
+    "bytes": 43809
   },
   {
     "name": "network-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "d875071571856f9dea9a188e2a6648d79f2dbe66b44d90b3c037d80aa8471480",
-    "bytes": 66296
+    "sha256": "89f7b7e790a1c94ccca90d42d2a241242ebd36e70058d83f9a6184ab91235547",
+    "bytes": 66404
   },
   {
     "name": "wifi-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "92a7a5b02584d72c2f0431669d35e66f813a666379b3311f669c43ed5d51256b",
-    "bytes": 70846
+    "sha256": "a140d32fe2535760f4a9dca5c8fe63f97139d1afc91196bb109a615f728c2aa1",
+    "bytes": 73064
   },
   {
     "name": "bluetooth-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "53b242525cc64c6593ebeff42fb5c4ceb503f208256e7ee11ed3df6f2328c112",
-    "bytes": 64542
+    "sha256": "0bbbd31a900eb5dbefa7253ed783f96f1e9f2356e40a8d08995a0e6f0d4e3245",
+    "bytes": 66965
   },
   {
     "name": "remote-Desktop-dark-en",
@@ -52,22 +52,22 @@
     "name": "storage-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "b07c22cb7c3460872a066bb4cdf936f3c6696fed5a36d99100d7c4808a956e8c",
-    "bytes": 63595
+    "sha256": "526835c6640f320f0f445fb79d7f288bbf11fadd13290db78825787d5ed49b11",
+    "bytes": 63573
   },
   {
     "name": "accounts-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "82018cf29fcc2a78a6236c615864fbb1e65ce5be51136397be7cff132f9ceb9d",
-    "bytes": 77539
+    "sha256": "8aa60719b815637bc8880ce7c632a4d918c6cd1095a455ccb5fdf2b09135bdf2",
+    "bytes": 76782
   },
   {
     "name": "sync-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "62c9457dd22b1449c2089357384ad5797df2de7e760bb7905da44f1969103e2d",
-    "bytes": 73327
+    "sha256": "ecfdae1ff7d0e9df00b122d6bf935d9f105769ff29ea9b23e094a73974dd982e",
+    "bytes": 72379
   },
   {
     "name": "updates-Desktop-dark-en",
@@ -101,8 +101,8 @@
     "name": "services-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "f4472fa825ab1a7a07a2c5693a9a5a384266ade2f1b40ed4e325093f8765a4a2",
-    "bytes": 92126
+    "sha256": "2b1078e04ef0a6b43cd279d4670d8ab394219f7e9670669a7c02f9a842d7b588",
+    "bytes": 91751
   },
   {
     "name": "home-handheld-RG34XX",
@@ -136,29 +136,29 @@
     "name": "display-light-en-Desktop",
     "width": 1280,
     "height": 720,
-    "sha256": "6ff4e377334ae04d2dc90b8e69a372fc5abe5cb7b21bbbdc1535fa7000bc3d72",
-    "bytes": 58960
+    "sha256": "524c5121a448a88d27420aa2e07a3fd2bc1a39b9513d3a3a8100bccc6d64da19",
+    "bytes": 58488
   },
   {
     "name": "display-oled-ja-Desktop",
     "width": 1280,
     "height": 720,
-    "sha256": "67f8e5fa3d5feac42b87c22c4c9ad233f59c4f6f734deb2af338367f2f2ae9c8",
-    "bytes": 60075
+    "sha256": "43b28a7a4c30aabbaa67056b1c76e155f4e614022e85d8c25ac840f337df34f1",
+    "bytes": 58812
   },
   {
     "name": "display-Leaf3C-eink",
     "width": 1280,
     "height": 720,
-    "sha256": "92c4363a16c6684d2fac4f9d09b901bd1bcfc38e34879864323218ca5b67c517",
-    "bytes": 54216
+    "sha256": "75ecc22025c17f212ceafa5f1813a8638c49c06fd61696c3911b4fe3603e8bd0",
+    "bytes": 54158
   },
   {
     "name": "wifi-Leaf3C-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "312c8dcc48b5c57e2012874679364e9cf5ae55b1e72be304a39161fbef469106",
-    "bytes": 66626
+    "sha256": "abc1fb4061be2459dfa84f9d829b4c8a1a6339c59f9f690844da0daa8d4675ee",
+    "bytes": 68478
   },
   {
     "name": "home-320x240",

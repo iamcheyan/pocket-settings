@@ -902,21 +902,48 @@ func (s *server) systemInfo(w http.ResponseWriter, _ *http.Request) {
 	jsonResponse(w, 200, out)
 }
 
+// mockNetworks / mockBluetoothDevices / mockStorageDevices are sample payloads
+// for the capability fixtures. They are labelled `mock` and never derived from
+// the host, so an available mock capability still yields inspectable data while
+// clearly not claiming real discovery.
+var mockNetworks = []map[string]any{
+	{"ssid": "Pocket-Lab", "signal": 82, "security": "WPA2", "saved": true, "source": "mock"},
+	{"ssid": "Home-5G", "signal": 64, "security": "WPA3", "saved": false, "source": "mock"},
+}
+var mockBluetoothDevices = []map[string]any{
+	{"id": "mock-audio-01", "name": "Mock Headphones", "type": "audio", "paired": true, "source": "mock"},
+	{"id": "mock-input-01", "name": "Mock Gamepad", "type": "input", "paired": false, "source": "mock"},
+}
+var mockStorageDevices = []map[string]any{
+	{"id": "internal", "label": "Internal", "kind": "internal", "filesystem": "ext4", "mount": "/", "total": 137438953472, "free": 68719476736, "readOnly": false, "health": "ok", "source": "mock"},
+	{"id": "tf-a", "label": "TF-A", "kind": "tf-a", "filesystem": "exfat", "mount": "/run/media/tf-a", "total": 128849018880, "free": 98784247808, "readOnly": false, "health": "ok", "source": "mock"},
+	{"id": "tf-b", "label": "TF-B", "kind": "tf-b", "filesystem": "exfat", "mount": "/run/media/tf-b", "total": 128849018880, "free": 120259084288, "readOnly": false, "health": "ok", "source": "mock"},
+	{"id": "usb", "label": "USB", "kind": "usb", "filesystem": "vfat", "mount": "/run/media/usb", "total": 32212254720, "free": 21474836480, "readOnly": true, "health": "unknown", "source": "mock"},
+}
+
+func (s *server) devicePayload(w http.ResponseWriter, capability, key string, payload []map[string]any, unavailableReason string) {
+	if c := s.capabilityData()[capability]; !c.Available {
+		jsonResponse(w, 200, map[string]any{"available": false, key: []any{}, "source": "mock", "mock": true, "reason": unavailableReason})
+		return
+	}
+	jsonResponse(w, 200, map[string]any{"available": true, key: payload, "source": "mock", "mock": true, "reason": "mock fixture data for the selected hardware profile"})
+}
+
 func (s *server) wifiScan(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		if _, ok := s.decodeActionBody(w, r); !ok {
 			return
 		}
 	}
-	jsonResponse(w, 200, map[string]any{"available": false, "networks": []any{}, "source": "mock", "mock": true, "reason": "Wi-Fi scanning is unavailable without a system provider"})
+	s.devicePayload(w, "WiFi", "networks", mockNetworks, "Wi-Fi scanning is unavailable without a system provider")
 }
 
 func (s *server) bluetoothDevices(w http.ResponseWriter, _ *http.Request) {
-	jsonResponse(w, 200, map[string]any{"available": false, "devices": []any{}, "source": "mock", "mock": true, "reason": "Bluetooth is unavailable without a system provider"})
+	s.devicePayload(w, "Bluetooth", "devices", mockBluetoothDevices, "Bluetooth is unavailable without a system provider")
 }
 
 func (s *server) storageDevices(w http.ResponseWriter, _ *http.Request) {
-	jsonResponse(w, 200, map[string]any{"available": false, "devices": []any{}, "source": "mock", "mock": true, "reason": "Storage discovery is unavailable without a system provider"})
+	s.devicePayload(w, "Storage", "devices", mockStorageDevices, "Storage discovery is unavailable without a system provider")
 }
 
 // accountProviders lists the identity providers Pocket Settings is designed to

@@ -5,9 +5,9 @@
 | Service / provider | Implementation | Real integration |
 |---|---|---|
 | `settingsd` + SQLite | Local API, persistence, overrides, audit | Implemented |
-| `wifi` | Status row `unavailable`, `source=mock`; scan returns unavailable + reason | None |
-| `bluetooth` | Status row `unavailable`; device list empty + reason | None |
-| `storaged` | Status row `unavailable`; device discovery unavailable | None |
+| `wifi` | Status row `unavailable`; scan returns two labelled mock networks only when the `WiFi` capability exists, otherwise unavailable + reason | None |
+| `bluetooth` | Status row `unavailable`; device list returns labelled mock audio/input devices only when `Bluetooth` is available | None |
+| `storaged` | Status row `unavailable`; device list returns internal/TF-A/TF-B/USB fixtures with capacity only when `Storage` is available (Desktop has no Storage capability) | None |
 | `authd` | Status row `unavailable`; account list unavailable | None |
 | `syncd` | Status row `unavailable`; provider list unavailable | None |
 | `downloadsd` | Status row `unavailable` | None |
