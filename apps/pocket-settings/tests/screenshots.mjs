@@ -1,6 +1,7 @@
 // Headless Chromium screenshot harness using the DevTools protocol directly.
 // Playwright is intentionally not required: this only needs Node's built-in
 // WebSocket and the system Chromium binary.
+import {existsSync} from 'node:fs';
 import { spawn } from 'node:child_process';
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -9,7 +10,9 @@ import { createHash } from 'node:crypto';
 
 const ORIGIN = process.env.POCKET_SETTINGS_URL ?? 'http://127.0.0.1:15173';
 const OUT = resolve(process.env.POCKET_SETTINGS_SCREENSHOTS ?? 'apps/pocket-settings/docs/screenshots');
-const CHROME = process.env.CHROMIUM ?? 'chromium';
+const CHROME = [process.env.CHROMIUM, process.env.CHROME_PATH, '/usr/bin/google-chrome', '/usr/bin/chromium', '/usr/bin/chromium-browser', '/run/current-system/sw/bin/chromium']
+  .find((candidate) => candidate && existsSync(candidate));
+if (!CHROME) throw new Error('no Chromium/Chrome binary found; set CHROMIUM');
 const PORT = Number(process.env.CDP_PORT ?? 9333);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 

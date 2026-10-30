@@ -1,12 +1,15 @@
 // Keyboard-only UI smoke test over the DevTools protocol (no Playwright).
 // Requires the app (`npm run dev`) and settingsd to be running.
+import {existsSync} from 'node:fs';
 import { spawn } from 'node:child_process';
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 const origin = process.env.POCKET_SETTINGS_URL ?? 'http://127.0.0.1:15173';
-const chrome = process.env.CHROMIUM ?? 'chromium';
+const chrome = [process.env.CHROMIUM, process.env.CHROME_PATH, '/usr/bin/google-chrome', '/usr/bin/chromium', '/usr/bin/chromium-browser', '/run/current-system/sw/bin/chromium']
+  .find((candidate) => candidate && existsSync(candidate));
+if (!chrome) throw new Error('no Chromium/Chrome binary found; set CHROMIUM');
 const port = Number(process.env.CDP_PORT ?? 9334);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
