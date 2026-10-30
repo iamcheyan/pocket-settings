@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.sqlite
+settingsd.sqlite
+*.log
+.DS_Store
+tsconfig.tsbuildinfo
+apps/pocket-settings/backend/settingsd/settingsd
