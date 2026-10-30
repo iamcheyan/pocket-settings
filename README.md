@@ -1,5 +1,12 @@
 # Pocket Settings
 
+
+> **PocketJS port (product target):** `apps/pocket-settings/pocket/` is the
+> native PocketJS program (Solid TSX → `.pocket` → `pocket-linux-kms`). The
+> `frontend/` tree remains the frozen React design reference and is not
+> extended. Frames: `docs/pocket/`; verification:
+> `apps/pocket-settings/POCKETJS-VERIFICATION.md`.
+
 Pocket Settings is the PJOS system settings application: a PocketJS UI
 (React + TypeScript + Vite) over a local Go service, `settingsd`, backed by
 SQLite and capability providers. It is designed to become the single source of

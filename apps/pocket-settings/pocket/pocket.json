@@ -1,0 +1,30 @@
+{
+  "$schema": "https://pocketjs.dev/schema/pocket-2.json",
+  "pocket": 2,
+  "id": "dev.pocket-settings.pocket",
+  "name": "pocket-settings",
+  "title": "SETTINGS",
+  "version": "1.0.0",
+  "engine": {
+    "capabilities": {
+      "requires": [
+        "text.glyphs.baked",
+        "input.buttons"
+      ]
+    }
+  },
+  "app": {
+    "entry": "src/main.tsx",
+    "output": "pocket-settings",
+    "framework": "solid",
+    "viewport": {
+      "fixed": {
+        "logical": [
+          360,
+          240
+        ],
+        "presentation": "native"
+      }
+    }
+  }
+}
