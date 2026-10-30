@@ -17,8 +17,8 @@
     "name": "audio-Desktop-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "928582954d6b9077fb7388f42a06d9178f6f676094ccbb002eaca1ec941d1748",
-    "bytes": 43811
+    "sha256": "1d06341f27256f289967a9d79205d4f354c50fb1fbf472883fb7994465a5655c",
+    "bytes": 43809
   },
   {
     "name": "network-Desktop-dark-en",
@@ -108,15 +108,15 @@
     "name": "home-handheld-RG34XX",
     "width": 1280,
     "height": 720,
-    "sha256": "e24a7baa9b8abf244cdc1fb851e81921688cc1fd314095b4be8ec6fd14f49fab",
-    "bytes": 161626
+    "sha256": "515eb44300bd7836348ab89d7d31d50b04b25a0122e8c3f38e7fc186544fa7c5",
+    "bytes": 159332
   },
   {
     "name": "home-light-en-Desktop",
     "width": 1280,
     "height": 720,
-    "sha256": "06c9abae051a19170722fa941b157436f1531bcac694e2e9d263ea47105a6494",
-    "bytes": 162255
+    "sha256": "5515dd03098dff1352d8bfd55f0cc3395f40c795fbb517db0423840b2c8fba90",
+    "bytes": 162266
   },
   {
     "name": "home-light-zh-CN-Desktop",
@@ -150,36 +150,36 @@
     "name": "display-Leaf3C-eink",
     "width": 1280,
     "height": 720,
-    "sha256": "ae0480074f7d036c33903c0a618af1fc9a3fa0f7cfd27760595dd3bf9199712b",
-    "bytes": 55051
+    "sha256": "65a94a01b0500c1bf75878cd7627a628922ecde41691921ca416674266d4ca99",
+    "bytes": 54247
   },
   {
     "name": "wifi-Leaf3C-dark-en",
     "width": 1280,
     "height": 720,
-    "sha256": "9c952fce948da57cc06d53dd1614b249697a48663c6e597642db392a33c6dede",
-    "bytes": 67097
+    "sha256": "312c8dcc48b5c57e2012874679364e9cf5ae55b1e72be304a39161fbef469106",
+    "bytes": 66626
   },
   {
     "name": "home-320x240",
     "width": 320,
     "height": 240,
-    "sha256": "f0818ff903d2e8fcc16082d2ac98371dee765a7c60b3b8c33101a1316d8ab434",
-    "bytes": 15034
+    "sha256": "ab6a9b0932ef62d35b36bd08a2ed250368735494232494d4596e60bb23b78ef5",
+    "bytes": 15380
   },
   {
     "name": "home-480x320",
     "width": 480,
     "height": 320,
-    "sha256": "dbed9a12e5862d687b1e10d57148272431469345bf12f7e19789d6c7ff9b1869",
-    "bytes": 36377
+    "sha256": "2a218f278b2e77bfba31db48f990781a2639f34b066803c43599755e2cee0ada",
+    "bytes": 36508
   },
   {
     "name": "home-640x480",
     "width": 640,
     "height": 480,
-    "sha256": "7b1fe308251f2466149f01b6c020fe28b57f85134758b635d838b78c4b74f17c",
-    "bytes": 97417
+    "sha256": "6282cfae762c4860826e1f20bf803345a787634f85c48bc86fcd713eeefd6f3f",
+    "bytes": 97354
   },
   {
     "name": "home-720x720",

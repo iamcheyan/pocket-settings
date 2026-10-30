@@ -101,6 +101,21 @@ try {
   const dark = await hash(`${origin}/?page=home&hardware=Desktop&theme=dark&locale=en`);
   const lightJa = await hash(`${origin}/?page=home&hardware=Desktop&theme=light&locale=ja`);
   if (dark === lightJa) throw new Error('theme/locale variants render identically');
+
+  // Capability gating: a handheld fixture without Display/Audio must not
+  // render those pages; Leaf3C (EInk) must expose Display.
+  const navFor = async hardware => {
+    await goto(`${origin}/?page=home&hardware=${hardware}&theme=dark&locale=en`);
+    return evalJS(`[...document.querySelectorAll('nav button')].map(b=>b.textContent.replace(/\\s+/g,' ').trim())`);
+  };
+  const handheldNav = await navFor('RG34XX');
+  if (handheldNav.includes('Display') || handheldNav.includes('Audio')) {
+    throw new Error(`RG34XX unexpectedly exposes uncapable pages: ${handheldNav.join('|')}`);
+  }
+  const readerNav = await navFor('Leaf3C');
+  if (!readerNav.includes('Display') || readerNav.includes('Audio')) {
+    throw new Error(`Leaf3C gating wrong: ${readerNav.join('|')}`);
+  }
   console.log(`UI smoke passed: ${dark} vs ${lightJa}`);
 } catch (error) {
   failures++;

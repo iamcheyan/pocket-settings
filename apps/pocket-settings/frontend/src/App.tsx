@@ -340,9 +340,10 @@ export function App() {
     const listed = categories.map(item => item.id).filter(id => domains.includes(id as Domain)) as Domain[];
     const candidates = [...new Set([...domains, ...listed])];
     const pageIds = candidates.filter(id => providerDomains.includes(id) || capabilityFor(id)?.available !== false);
-    const ordered: Page[] = ['home', 'display', 'audio', 'network'];
-    if (wifiCapability?.available !== false) ordered.push('wifi');
-    if (bluetoothCapability?.available) ordered.push('bluetooth');
+    const ordered: Page[] = ['home'];
+    for (const id of ['display', 'audio', 'network'] as Domain[]) if (pageIds.includes(id)) ordered.push(id);
+    if (wifiCapability?.available === true && pageIds.includes('network')) ordered.push('wifi');
+    if (bluetoothCapability?.available === true) ordered.push('bluetooth');
     for (const id of ['remote', 'storage', 'accounts', 'sync', 'updates', 'power', 'developer', 'system'] as Domain[]) if (pageIds.includes(id)) ordered.push(id);
     ordered.push('services');
     return ordered;
