@@ -32,7 +32,7 @@ bun "$SDK/tools/pocket.ts" compile \
   --target rocknix-h700-kms --manifest pocket.json --output out.pocket
 ```
 
-Admission: `sha256:842466c38cc8af474ee9baf7be4e02b0089a99bff427fcdcd125e6efc721676d`; TypeScript passes for the app module graph. Package: `out.pocket`, sha256 `58f6d52df64712dfb2b2084791eb1f4c36ac92542d405db26fe4e40974fa544e`.
+Admission: `sha256:842466c38cc8af474ee9baf7be4e02b0089a99bff427fcdcd125e6efc721676d`; TypeScript passes for the app module graph. Package: `out.pocket`, sha256 `7b8209ed497c2f6d99b85e440fb3723b2563237f7dbac3271001bbec55a39ab4`.
 
 ## Frames
 
@@ -48,8 +48,8 @@ bun tools/render-pocket.ts \
 
 | file | state | sha256 (first 16) |
 |---|---|---|
-| `docs/pocket/screen-home.png` | home | `a2a4b0fecd6df490` |
-| `docs/pocket/screen-home-focus.png` | home-focus | `f1a60b7ffe8f17d5` |
+| `docs/pocket/screen-home.png` | home | `58c23b64e8af8757` |
+| `docs/pocket/screen-home-focus.png` | home-focus | `2c01be0e5791c53b` |
 | `docs/pocket/screen-detail.png` | detail | `9ddd0f2dffcc27aa` |
 | `docs/pocket/screen-detail-action.png` | detail-action | `23b2593da6e2f46c` |
 | `docs/pocket/screen-settings.png` | settings | `166c451096dbcc9c` |
