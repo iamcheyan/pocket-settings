@@ -1,0 +1,17 @@
+{
+  "app": "settings",
+  "package_sha256": "ab81b33c1f4a400c3362484b4ba963306ec4af926826df03082ff65fc514c8fe",
+  "launcher_before": "17123",
+  "launcher_after": "17713",
+  "boot_sha256": "6ed41612bce1723d1eda64b5a0ee9333a105ed498b7085c03267539cf6c1b32d",
+  "frames": [
+    "home",
+    "home-focus",
+    "detail",
+    "detail-action",
+    "settings",
+    "settings-toggled"
+  ],
+  "runtime": "/mnt/sdcard/System/pocketjs/bin/pocket-linux-kms",
+  "deploy": "/storage/pjs/pocket-settings"
+}
